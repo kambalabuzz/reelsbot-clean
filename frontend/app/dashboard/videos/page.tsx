@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useAssembly } from "@/contexts/AssemblyContext";
 import { VideoGridSkeleton } from "@/components/VideoCardSkeleton";
+import { getApiBase } from "@/lib/api";
 
 type VideoItem = {
   id?: string;
@@ -61,10 +62,7 @@ export default function VideosPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [deleting, setDeleting] = useState<string | null>(null);
-  const apiBase = useMemo(
-    () => process.env.NEXT_PUBLIC_API_URL || (typeof window !== "undefined" ? window.location.origin : ""),
-    []
-  );
+  const apiBase = useMemo(() => getApiBase(), []);
 
   const filtered = useMemo(() => {
     return items.filter((v) => v.topic.toLowerCase().includes(search.toLowerCase()));

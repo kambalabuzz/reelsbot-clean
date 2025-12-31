@@ -4,9 +4,8 @@ import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+import { useMemo, useState } from "react";
+import { getApiBase } from "@/lib/api";
 
 const plans = [
   {
@@ -59,11 +58,12 @@ const plans = [
 
 export default function BillingPage() {
   const [loading, setLoading] = useState<string | null>(null);
+  const apiBase = useMemo(() => getApiBase(), []);
 
   const handleCheckout = async (planId: string) => {
     setLoading(planId);
     try {
-      const res = await fetch(`${API_URL}/api/checkout?plan=${planId}`, {
+      const res = await fetch(`${apiBase}/api/checkout?plan=${planId}`, {
         method: "POST",
       });
       const data = await res.json();

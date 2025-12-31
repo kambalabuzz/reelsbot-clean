@@ -9,6 +9,7 @@ import { saveAs } from "file-saver";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { useAssembly } from "@/contexts/AssemblyContext";
+import { getApiBase } from "@/lib/api";
 
 const PLACEHOLDER = "https://via.placeholder.com/1080x1920/1a1a2e/ffffff?text=Scene";
 const ASSEMBLY_STALE_MS = 30 * 60 * 1000;
@@ -38,10 +39,7 @@ export default function VideoDetailPage() {
   const [retrying, setRetrying] = useState(false);
   const pollIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const retryStartedAtRef = useRef<number | null>(null);
-  const apiBase = useMemo(
-    () => process.env.NEXT_PUBLIC_API_URL || (typeof window !== "undefined" ? window.location.origin : ""),
-    []
-  );
+  const apiBase = useMemo(() => getApiBase(), []);
 
   const assembling = isAssembling(videoId);
   const assemblyProgress = getProgress(videoId);

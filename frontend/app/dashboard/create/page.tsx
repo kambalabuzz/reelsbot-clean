@@ -26,6 +26,7 @@ import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import { getApiBase } from "@/lib/api";
 
 const VOICE_OPTIONS = [
   { id: "adam", name: "Adam", desc: "Deep and authoritative", gender: "male" },
@@ -82,10 +83,7 @@ const PLACEHOLDER = "https://via.placeholder.com/1080x1920/1a1a2e/ffffff?text=Sc
 type GenerationStep = "idle" | "script" | "voice" | "images" | "assembly" | "done";
 
 export default function AIDirectorPage() {
-  const apiBase = useMemo(
-    () => process.env.NEXT_PUBLIC_API_URL || (typeof window !== "undefined" ? window.location.origin : ""),
-    []
-  );
+  const apiBase = useMemo(() => getApiBase(), []);
   const [topic, setTopic] = useState("");
   const [voice, setVoice] = useState("adam");
   const [artStyle, setArtStyle] = useState("cinematic");

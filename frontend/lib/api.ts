@@ -1,4 +1,21 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+export const getApiBase = () => {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL || "";
+  if (typeof window === "undefined") {
+    return envUrl;
+  }
+  if (!envUrl) {
+    return window.location.origin;
+  }
+  if (process.env.NODE_ENV === "production") {
+    const isLocal = envUrl.includes("localhost") || envUrl.includes("127.0.0.1");
+    if (isLocal) {
+      return window.location.origin;
+    }
+  }
+  return envUrl;
+};
+
+const API_URL = getApiBase();
 
 export async function createSeries(data: any) {
   const res = await fetch(`${API_URL}/api/series`, {
