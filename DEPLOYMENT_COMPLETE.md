@@ -400,3 +400,9 @@ LIMIT 10;
 All services deployed and operational. Ready to generate mystery/documentary videos with storyteller captions!
 
 **Test it now**: https://frontend-f8trd38ta-kambalabuzzs-projects.vercel.app
+
+## GitHub Repository
+
+**Code**: https://github.com/kambalabuzz/reelsbot-clean
+
+All code is now in version control and ready for collaboration!
