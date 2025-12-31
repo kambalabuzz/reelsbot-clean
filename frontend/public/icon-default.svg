@@ -1,0 +1,54 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="128" fill="url(#gradient)"/>
+
+  <!-- Video Play Icon -->
+  <g filter="url(#shadow)">
+    <!-- Film strip top -->
+    <rect x="128" y="128" width="256" height="32" rx="4" fill="white"/>
+    <rect x="136" y="136" width="16" height="16" rx="2" fill="#8B5CF6"/>
+    <rect x="168" y="136" width="16" height="16" rx="2" fill="#8B5CF6"/>
+    <rect x="200" y="136" width="16" height="16" rx="2" fill="#8B5CF6"/>
+    <rect x="328" y="136" width="16" height="16" rx="2" fill="#8B5CF6"/>
+    <rect x="360" y="136" width="16" height="16" rx="2" fill="#8B5CF6"/>
+
+    <!-- Main video area with play button -->
+    <rect x="128" y="160" width="256" height="192" fill="white"/>
+
+    <!-- Play button -->
+    <circle cx="256" cy="256" r="48" fill="#8B5CF6"/>
+    <path d="M 236 236 L 236 276 L 276 256 Z" fill="white"/>
+
+    <!-- Film strip bottom -->
+    <rect x="128" y="352" width="256" height="32" rx="4" fill="white"/>
+    <rect x="136" y="360" width="16" height="16" rx="2" fill="#8B5CF6"/>
+    <rect x="168" y="360" width="16" height="16" rx="2" fill="#8B5CF6"/>
+    <rect x="200" y="360" width="16" height="16" rx="2" fill="#8B5CF6"/>
+    <rect x="328" y="360" width="16" height="16" rx="2" fill="#8B5CF6"/>
+    <rect x="360" y="360" width="16" height="16" rx="2" fill="#8B5CF6"/>
+  </g>
+
+  <!-- AI Sparkle Effect -->
+  <g opacity="0.9">
+    <circle cx="144" cy="144" r="4" fill="#FFD700"/>
+    <circle cx="368" cy="144" r="6" fill="#FFD700"/>
+    <circle cx="384" cy="368" r="4" fill="#FFD700"/>
+    <circle cx="144" cy="368" r="5" fill="#FFD700"/>
+
+    <!-- Larger sparkles -->
+    <path d="M 96 96 L 100 108 L 112 112 L 100 116 L 96 128 L 92 116 L 80 112 L 92 108 Z" fill="#FFD700"/>
+    <path d="M 416 416 L 420 428 L 432 432 L 420 436 L 416 448 L 412 436 L 400 432 L 412 428 Z" fill="#FFD700"/>
+  </g>
+
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="512" y2="512">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="50%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#C026D3"/>
+    </linearGradient>
+
+    <filter id="shadow" x="0" y="0" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+</svg>

@@ -1,0 +1,77 @@
+services:
+  - type: web
+    name: viralpilot-api
+    env: python
+    region: oregon
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: REPLICATE_API_TOKEN
+        sync: false
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_DEFAULT_VOICE
+        value: pNInz6obpgDQGcFmaJgB
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PRICE_HOBBY
+        sync: false
+      - key: STRIPE_PRICE_DAILY
+        sync: false
+      - key: STRIPE_PRICE_PRO
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: MODAL_WEBHOOK_SECRET
+        sync: false
+      - key: ASSEMBLY_BACKEND
+        value: queue
+      - key: ASSEMBLY_QUEUE_ENABLED
+        value: "true"
+      - key: ASSEMBLY_CALLBACK_TOKEN
+        sync: false
+      - key: ASSEMBLY_CALLBACK_URL
+        sync: false
+      - key: RATE_LIMIT_REQUESTS
+        value: 60
+      - key: RATE_LIMIT_WINDOW
+        value: 60
+      - key: VOICE_LIMIT_REQUESTS
+        value: 20
+      - key: VOICE_LIMIT_WINDOW
+        value: 60
+      - key: VOICE_CACHE_TTL
+        value: 900
+      - key: VOICE_MAX_RETURN
+        value: 12
+    healthCheckPath: /
+    autoDeploy: true
+  - type: worker
+    name: viralpilot-assembly-worker
+    env: python
+    region: oregon
+    plan: starter
+    buildCommand: pip install -r backend/worker/requirements.txt
+    startCommand: python backend/worker/queue_worker.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: ASSEMBLY_POLL_SECONDS
+        value: 5
+      - key: ASSEMBLY_LOCK_SECONDS
+        value: 900
+      - key: ASSEMBLY_RETRY_BACKOFF_SECONDS
+        value: 120
